@@ -3,3 +3,7 @@
     justify-content: center;
     width: 85%;
 }
+
+* {
+    font-family: 'Poppins', sans-serif;
+}

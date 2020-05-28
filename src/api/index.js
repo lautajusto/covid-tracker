@@ -2,15 +2,25 @@ import axios from 'axios';
 
 const url = 'https://covid19.mathdro.id/api';
 
-export const fetchData =  async () => {
+
+// Traemos los datos que necesitamos desde la API con axios
+
+export const fetchData =  async (country) => {
+    let changeableUrl = url;
+
+    if(country){
+        changeableUrl = `${url}/countries/${country}`;
+    }
+
     try {
-        const { data: { confirmed, recovered, deaths, lastUpdate } } = await axios.get(url);
+        const { data: { confirmed, recovered, deaths, lastUpdate } } = await axios.get(changeableUrl);
 
         return { confirmed, recovered, deaths, lastUpdate, };
     } catch  {
-        
     }
 }
+
+// Traemos los datos diarios de la API con axios
 
 export const fetchDailyData = async () => {
     try {
@@ -28,6 +38,7 @@ export const fetchDailyData = async () => {
     }
 }
 
+//Traemos a todos los paises y mapeamos por cada pais, traer su nombre
 export const fetchCountries = async () => {
     try {
         const { data: { countries }} = await axios.get(`${url}/countries`);

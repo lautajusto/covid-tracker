@@ -5,6 +5,8 @@ import cx from 'classnames';
 
 import styles from './Cards.module.css';
 
+// traemos los datos de la API y los pasamos como props
+
 const Cards = ( { data: { confirmed, recovered, deaths, lastUpdate }}) => {
     if(!confirmed) {
         return 'Loading...';
